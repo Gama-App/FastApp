@@ -21,8 +21,9 @@ export class HomePage {
 contatos: FirebaseListObservable<any>;
 
  teste:string = "Teste";
-  constructor(public navCtrl: NavController, public AlertController: AlertController, angFire: AngularFire) {
+  constructor(public navCtrl: NavController, public alertController: AlertController, angFire: AngularFire) {
     this.contatos = angFire.database.list("/Contatos");
+    
   }
 
 
@@ -33,28 +34,33 @@ contatos: FirebaseListObservable<any>;
   }
 
   editContact(contato){
+
     this.navCtrl.push(ContactPage,{
+      contatos:this.contatos,
       contato:contato
     })
   }
 
-  deleteContact(contatoId){
-    let prompt = this.AlertController.create({
-        title:"Deletar Contato",
-        buttons:[{
-            text:"cancelar",
-            handler: data => {
-              console.log("Cancelado");
-            }
-          },
-          {
-            text:"deletar",
-            handler: data =>{
-              this.contatos.remove(contatoId);
-            }
-          }
-        ]
-    });
+  deleteContact(contatoId):void{
+    console.log("passou"+contatoId);
+    this.contatos.remove(contatoId);
+
+    // let prompt = this.alertController.create({
+    //     title:"Deletar Contato",
+    //     buttons:[{
+    //         text:"cancelar",
+    //         handler: data => {
+    //           console.log("Cancelado");
+    //         }
+    //       },
+    //       {
+    //         text:"deletar",
+    //         handler: data => {
+    //           this.contatos.remove(contatoId);
+    //         }
+    //       }
+    //     ]
+    // });
   }
 
     // platform.ready().then(() => {
