@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Novo contato
+    </ion-title>
+    <button type="submit" menuToggle (click)="saveContact(event)">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="contatoForm" (ngSubmit)="saveContact(event)">
+          <ion-item>
+              <ion-label >Nome</ion-label>
+              <ion-input type="text" formControlName="nome" name="nome"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label >Telefone</ion-label>
+              <ion-input type="text" formControlName="telefone" name="telefone"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label >Email</ion-label>
+              <ion-input type="email"  formControlName="email" name="email"></ion-input>
+          </ion-item>
+  </form>
+</ion-content>

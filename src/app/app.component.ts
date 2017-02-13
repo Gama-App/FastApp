@@ -3,13 +3,14 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
-
+import {ContactPage} from '../pages/contact/contact';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage = HomePage;
+  // rootPage = ContactPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
