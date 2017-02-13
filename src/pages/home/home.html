@@ -3,12 +3,34 @@
     <ion-title>
       Contatos
     </ion-title>
-    <button menuToggle (click)="addContact()">
-      <ion-icon name="add"></ion-icon>
-    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addContact()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   	<p>{{teste}}</p>
+    <ion-list>
+
+      <ion-item-sliding *ngFor="let contato of contatos | async">
+        <ion-item>
+          <h2>{{contato.nome}}</h2>
+          <p>{{contato.telefone}}</p>
+          <p>{{contato.email}}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="secondary" (click)="editContact(contato)">
+            <ion-icon name="md-create">Editar</ion-icon>
+          </button>
+        </ion-item-options>
+        <ion-item-options side="left">
+          <button ion-button color="danger" (click)="deleteContact(contato.$key)">
+            <ion-icon name="md-trash">Excluir</ion-icon>
+          </button>
+        </ion-item-options>
+    </ion-item-sliding>
+    </ion-list>
 </ion-content>

@@ -3,9 +3,11 @@
     <ion-title>
       Novo contato
     </ion-title>
-    <button type="submit" menuToggle (click)="saveContact(event)">
-      <ion-icon name="checkmark"></ion-icon>
-    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="saveContact(event)">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
