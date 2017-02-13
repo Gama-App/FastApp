@@ -13,8 +13,8 @@
 
 <ion-content padding>
   	<p>{{teste}}</p>
+    <ion-searchbar ></ion-searchbar>
     <ion-list>
-
       <ion-item-sliding *ngFor="let contato of contatos | async">
         <ion-item>
           <h2>{{contato.nome}}</h2>

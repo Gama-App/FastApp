@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms/src/forms';
 import { Storage } from '@ionic/storage/es2015/storage';
+
+import {Camera} from 'ionic-native';
 
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
@@ -19,7 +21,8 @@ export class ContactPage{
   contatos: FirebaseListObservable<any>;
 
   contato: any;
-  constructor(public navCtrl: NavController, angularFire: AngularFire, public navParams: NavParams, public fb:FormBuilder){
+  constructor(public navCtrl: NavController, angularFire: AngularFire,
+     public navParams: NavParams, public fb:FormBuilder, public viewController: ViewController){
     this.contatos = navParams.get("contatos");
     this.contato = navParams.get("contato");
     if(this.contato != null){
@@ -36,12 +39,15 @@ export class ContactPage{
         telefone: this.contatoForm.value.telefone,
         email: this.contatoForm.value.email
       });
+
+      this.viewController.dismiss();
     }else{
       this.contatos.update(this.contato.$key,{
         nome: this.contatoForm.value.nome,
         telefone: this.contatoForm.value.telefone,
         email: this.contatoForm.value.email
       });
+      this.viewController.dismiss();
     }
   }
 
@@ -50,6 +56,20 @@ export class ContactPage{
       nome: [contato.nome, Validators.required],
       telefone: [contato.telefone, Validators.required],
       email: [contato.email, Validators.required]
+    });
+  }
+
+  getPicture(){
+    Camera.getPicture({
+      destinationType : Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      targetHeight:640,
+      correctOrientation:true
+    }).then((_imagePath) => {
+
+      alert("Certo " + _imagePath.message);
+    }, (_error) =>{
+      alert("Erro " + _error.message);
     });
   }
 }

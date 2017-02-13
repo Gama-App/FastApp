@@ -22,8 +22,11 @@ contatos: FirebaseListObservable<any>;
 
  teste:string = "Teste";
   constructor(public navCtrl: NavController, public alertController: AlertController, angFire: AngularFire) {
-    this.contatos = angFire.database.list("/Contatos");
-    
+    this.contatos = angFire.database.list("/Contatos",{
+      query:{
+        orderByChild: "nome"
+      }
+    });
   }
 
 
@@ -61,6 +64,9 @@ contatos: FirebaseListObservable<any>;
     //       }
     //     ]
     // });
+  }
+
+  setFilteredItems(event){
   }
 
     // platform.ready().then(() => {

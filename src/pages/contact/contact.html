@@ -12,6 +12,10 @@
 </ion-header>
 
 <ion-content padding>
+<ion-buttons>
+<button (click)="getPicture()">FOTO</button>
+
+</ion-buttons>
   <form [formGroup]="contatoForm" (ngSubmit)="saveContact(event)">
           <ion-item>
               <ion-label >Nome</ion-label>
