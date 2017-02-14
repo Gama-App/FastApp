@@ -1,5 +1,7 @@
 # FastApp
 
+*Banco de dados utilizando firebase*
+
 ## Instalaço do Ionic
 
 Para iniciar a aplicação, deve-se seguir a instalação do ionic.
